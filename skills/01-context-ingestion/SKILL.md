@@ -4,37 +4,49 @@
 Extract a structured design brief from any input — a context document, free text, or a conversational interview. This brief is the foundation every other skill builds on. Output format is always identical regardless of input type.
 
 ## Input types
-- **Document-led**: PRD, project brief, initiative doc, Starts With Why doc, or any strategic document
-- **Feature/flow-led**: Free text describing a feature or flow without a document
-- **Problem-led**: A problem statement without a specified solution direction
-- **No input**: A vague prompt with minimal context
+- Document-led: PRD, project brief, initiative doc, Starts With Why doc, or any strategic document
+- Feature/flow-led: Free text describing a feature or flow without a document
+- Problem-led: A problem statement without a specified solution direction
+- No input: A vague prompt with minimal context
 
 ## The four signals
-Always extract these four — do not proceed to any other skill until all are resolved:
+Always extract these four before proceeding:
 
-1. **Problem** — What specific problem or friction is being addressed?
-2. **Users** — Who are the primary users? What is their context and emotional state?
-3. **Success** — What does a good outcome look like for the user?
-4. **Constraints** — Platform, design system, business rules, technical limitations?
+1. Problem — What specific problem or friction is being addressed?
+2. Users — Who are the primary users? What is their context and emotional state?
+3. Success — What does a good outcome look like for the user?
+4. Constraints — Platform, design system, business rules, technical limitations?
+
+## Design scope classification — CRITICAL
+Before outputting the brief, classify the design scope as either SINGLE SCREEN or WORKFLOW.
+
+SINGLE SCREEN: The design involves one screen or interface in isolation.
+Examples: empty state, settings page, profile screen, dashboard, search results, product detail page.
+
+WORKFLOW: The design involves two or more connected screens that form a sequential or branching user journey.
+Examples: checkout flow, sign up flow, onboarding, KYC verification, password reset, booking flow, payment flow.
+
+The classification must appear in the brief. It changes how Skill 02 generates wireframes:
+- Single screen: 4 concepts explore different layouts and interaction models for that one screen
+- Workflow: 4 concepts explore different flow structures — how screens are sequenced, what is split vs combined, what gates what
+
+If the scope is ambiguous, classify as WORKFLOW if two or more steps or states are implied.
 
 ## Behaviour rules
 
 ### Rule 1 — Extract silently from documents
-If a document is provided, extract all four signals without asking questions. Only ask if a signal is genuinely absent or ambiguous.
+If a document is provided, extract all four signals without asking questions. Only ask if a signal is genuinely absent.
 
 ### Rule 2 — Ask only essential questions when context is missing
-When no document is provided, ask only what is essential to unblock generation. Infer everything else. Use structured choice questions (single-select or multi-select), not open text. Maximum 3 questions before proceeding.
+When no document is provided, ask max 3 structured choice questions before proceeding. Infer everything else.
 
-### Rule 3 — Use the interview path when there is no document
-If no document is provided, trigger the essential questions below. Stop as soon as you have enough to produce a grounded brief.
+### Rule 3 — Essential questions (no-document path)
 
-**Essential questions (no-document path):**
-
-Q1 — What are you designing? (single-select + optional free text)
+Q1 — What are you designing? (single-select)
 - A new feature for an existing product
 - A new product or flow from scratch
 - A redesign of an existing flow
-- Something else (free text)
+- Something else
 
 Q2 — Who is the primary user? (single-select)
 - General consumer
@@ -49,36 +61,34 @@ Q3 — What platform? (multi-select)
 - Cross-platform
 
 ### Rule 4 — Never generate wireframes on a vague brief
-If the brief is too thin to produce grounded concepts, ask one more focused question rather than generating generic ideas.
+If the brief is too thin, ask one more focused question.
 
 ### Rule 5 — Always produce the structured brief before passing to the next skill
-Output the brief in the format below. Make it visible to the user so they can correct it before generation begins.
+Output the brief and ask the user to confirm before proceeding.
 
 ## Structured brief output format
 
-```
 DESIGN BRIEF
 ------------
-Problem:      [What is broken, slow, confusing, or missing]
-Users:        [Who they are, their context, comfort level]
-Success:      [What changes for the user if this is done well]
-Constraints:  [Platform, design system, tech limits, business rules]
-Flow scope:   [The specific screen or flow being ideated]
-```
+Problem:      [what is broken, slow, confusing, or missing]
+Users:        [who they are, their context, comfort level]
+Success:      [what changes for the user if this is done well]
+Constraints:  [platform, design system, tech limits, business rules]
+Flow scope:   [the specific screen or flow being ideated]
+Screen size:  [e.g. 390x844 mobile, 1440x900 desktop]
+Scope type:   [SINGLE SCREEN or WORKFLOW]
 
 ## Document format handling
 
-This skill must handle any of these document types without asking the user what type it is:
-
-| Document type       | What to look for                                              |
-|---------------------|---------------------------------------------------------------|
-| PRD                 | Problem statement, user stories, acceptance criteria, scope   |
-| Project brief       | Goals, audience, success metrics, constraints                 |
-| Initiative doc      | Business motivation, user impact, scope boundaries            |
-| Starts With Why     | Core purpose, who it serves, belief statements                |
-| Free text           | Extract intent, infer platform and user type if not stated    |
+| Document type    | What to look for                                            |
+|------------------|-------------------------------------------------------------|
+| PRD              | Problem statement, user stories, acceptance criteria, scope |
+| Project brief    | Goals, audience, success metrics, constraints               |
+| Initiative doc   | Business motivation, user impact, scope boundaries          |
+| Starts With Why  | Core purpose, who it serves, belief statements              |
+| Free text        | Extract intent, infer platform and user type if not stated  |
 
 ## Handoff
 Once the structured brief is confirmed, pass it to:
-- Skill 02 (Wireframe Generation) — always
-- Skill 04 (Competitive Analysis) — only if toggle is on
+- Skill 04 (Competitive Analysis) — always runs first
+- Skill 02 (Wireframe Generation) — after Skill 04 completes
