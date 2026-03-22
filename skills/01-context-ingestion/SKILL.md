@@ -42,7 +42,7 @@ When no document is provided, ask max 3 structured choice questions before proce
 
 ### Rule 3 — Platform must always be confirmed — never assumed
 
-CRITICAL: Never default to mobile or assume a platform. If the user has not explicitly stated the platform, always ask before proceeding. This is a required question regardless of how much other context was provided.
+CRITICAL: Never default to mobile or assume a platform. Mobile is not the default. Desktop is not the default. There is no default — platform must always be confirmed with the user. If the user has not explicitly stated the platform, always ask before proceeding. This is a required question regardless of how much other context was provided.
 
 Platform question (always ask if not stated):
 "What platform are you designing for?"
