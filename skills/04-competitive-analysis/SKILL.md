@@ -4,7 +4,10 @@
 Research how competitors and leading products have solved the same or similar design problem. This skill runs ALWAYS — it is not optional. Its output directly informs Skill 02, ensuring every wireframe concept is grounded in real industry patterns.
 
 ## When this skill runs
-Always — immediately after Skill 01 confirms the brief, before Skill 02 generates anything.
+
+**ALWAYS — this skill is not optional and does not require user confirmation.**
+It runs automatically immediately after Skill 01 confirms the brief, before Skill 02 generates anything.
+Do not ask the user if they want competitive analysis. Just run it.
 
 ## Research scope
 Search for:
