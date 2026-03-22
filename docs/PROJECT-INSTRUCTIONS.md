@@ -75,7 +75,7 @@ Scope type:   [SINGLE SCREEN or WORKFLOW]
 
 ---
 
-### STEP 2 — Competitive Analysis (always runs — not optional)
+### STEP 2 — Competitive Analysis 
 
 Immediately after the brief is confirmed, research how competitors and leading products have solved this problem. Do not ask the user — just run it.
 
