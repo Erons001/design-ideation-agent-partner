@@ -40,7 +40,22 @@ If a document is provided, extract all four signals without asking questions. On
 ### Rule 2 — Ask only essential questions when context is missing
 When no document is provided, ask max 3 structured choice questions before proceeding. Infer everything else.
 
-### Rule 3 — Essential questions (no-document path)
+### Rule 3 — Platform must always be confirmed — never assumed
+
+CRITICAL: Never default to mobile or assume a platform. If the user has not explicitly stated the platform, always ask before proceeding. This is a required question regardless of how much other context was provided.
+
+Platform question (always ask if not stated):
+"What platform are you designing for?"
+- Mobile (iOS / Android) — 390 x 844px artboard
+- Web — desktop (1440 x 900px artboard)
+- Web — responsive (generate both mobile and desktop artboards)
+- Cross-platform app — specify primary platform
+
+If the user says "responsive" or "both", generate artboards for both mobile and desktop for each concept.
+
+### Rule 4 — Essential questions (no-document path)
+
+When no document is provided, ask these in order. Stop as soon as you have enough to proceed.
 
 Q1 — What are you designing? (single-select)
 - A new feature for an existing product
@@ -54,16 +69,16 @@ Q2 — Who is the primary user? (single-select)
 - Internal team / ops user
 - Mixed audience
 
-Q3 — What platform? (multi-select)
+Q3 — What platform? (always ask — never assume)
 - Mobile (iOS / Android)
-- Web (desktop)
-- Web (responsive)
+- Web — desktop
+- Web — responsive (mobile + desktop)
 - Cross-platform
 
-### Rule 4 — Never generate wireframes on a vague brief
+### Rule 5 — Never generate wireframes on a vague brief
 If the brief is too thin, ask one more focused question.
 
-### Rule 5 — Always produce the structured brief before passing to the next skill
+### Rule 6 — Always produce the structured brief before passing to the next skill
 Output the brief and ask the user to confirm before proceeding.
 
 ## Structured brief output format
@@ -75,7 +90,8 @@ Users:        [who they are, their context, comfort level]
 Success:      [what changes for the user if this is done well]
 Constraints:  [platform, design system, tech limits, business rules]
 Flow scope:   [the specific screen or flow being ideated]
-Screen size:  [e.g. 390x844 mobile, 1440x900 desktop]
+Platform:     [Mobile / Desktop / Responsive / Cross-platform — always confirmed with user, never assumed]
+Screen size:  [390x844 for mobile | 1440x900 for desktop | both if responsive]
 Scope type:   [SINGLE SCREEN or WORKFLOW]
 
 ## Document format handling
