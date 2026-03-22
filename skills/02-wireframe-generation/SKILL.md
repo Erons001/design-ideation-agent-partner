@@ -187,8 +187,16 @@ Then Skill 03 rationale immediately after.
 
 ---
 
+### Desktop wireframe rules (additional)
+- Nav bar: full width, 64px tall, fill #EBEBEB
+- Sidebar (if layout calls for it): 240px wide, full height, fill #EEEEEE
+- Content area: remaining width after sidebar
+- Max content width: 1200px, centered with auto margins
+- Desktop CTAs: not necessarily full-width — can be 200-280px wide, left-aligned or inline
+- Desktop inputs: typically 50% width or less, not full-width like mobile
+
 ## RULES
-- Exactly 4 concepts — never more, never fewer
+- Exactly 4 concepts — never more, never fewer. If you find yourself generating a 5th, stop and replace the weakest concept instead.
 - Each concept uses a different divergence angle
 - No repeated layout or flow structures
 - Competitive FOLLOW and CHALLENGE directives must each appear in at least one concept
