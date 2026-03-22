@@ -48,6 +48,29 @@ Map each concept to a different reference model the user already carries.
 
 ---
 
+## PRE-GENERATION THINKING — REQUIRED BEFORE DRAWING ANY WIREFRAME
+
+Before producing any SVG, work through the following for all 4 concepts. This thinking is what the wireframe must visually express. A wireframe that cannot be explained by this reasoning should not be generated.
+
+For each of the 4 concepts, answer before starting:
+
+1. What is the design hypothesis?
+   Format: "If [user type] [specific belief or behaviour], then [design approach] will [outcome] because [reason]."
+
+2. What psychological principle does this concept use, and how does the specific layout or flow decision express it?
+   Not just naming a principle — show how a specific design decision embodies it.
+
+3. What is the exact friction this concept addresses — the specific moment of hesitation, confusion, or drop-off in the user's current experience?
+
+4. What bet is this concept making about the user that the other 3 are not?
+   If two concepts share the same bet, replace one before generating.
+
+5. Which competitive directive does this concept respond to — FOLLOW, CHALLENGE, or BORROW — and exactly how does the layout or flow reflect that position?
+
+Once all 4 concept hypotheses are established and are genuinely distinct, generate the SVG. Every major layout decision should be traceable to the reasoning above.
+
+---
+
 ## SVG WIREFRAME STANDARD
 
 ### Output
