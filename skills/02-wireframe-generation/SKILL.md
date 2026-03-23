@@ -1,7 +1,7 @@
 # Skill 02 — Wireframe Generation
 
 ## Purpose
-Generate exactly 4 divergent low-fi wireframe concepts from the structured brief and competitive analysis. Every concept must be rooted in a clear design hypothesis — a reasoned position on what will work for this specific user in this specific context.
+Generate exactly 4 divergent mid-fi wireframe concepts from the structured brief and competitive analysis. Every concept must be rooted in a clear design hypothesis — a reasoned position on what will work for this specific user in this specific context.
 
 ## Scope determines output format
 
@@ -80,6 +80,7 @@ Every major layout decision must be traceable to the reasoning above.
 ### Output
 A SINGLE SVG file with ALL 4 concepts on one canvas.
 Output via create_file tool named: wireframes-[flow]-[date].svg
+Fidelity: mid-fi — real typography scale, real component shapes, greyscale only
 
 ---
 
@@ -220,83 +221,195 @@ Between mini-screens within a row:
 - fill #F7F7F7, stroke #E2E2E2, stroke-width 1
 - rx 12 for full size, rx 6 for mini
 
-## WIREFRAME VISUAL RULES — STRICT
+## WIREFRAME VISUAL RULES — MID-FI
 
-### What wireframes communicate
-Layout, hierarchy, and interaction model ONLY. Not content. Not copy.
+### What mid-fi wireframes are
+Mid-fi sits between lo-fi (grey blocks only) and hi-fi (final polished design).
+Mid-fi wireframes show real visual hierarchy, real component shapes, real typography sizing, and real spacing — but remain fully greyscale with no colour decisions.
 
-### The golden rule
-Single screen: ONE screen per artboard. No secondary states, no annotation text.
-Workflow: 2-3 mini-screens per row. Key steps only — no annotation text between screens.
+The goal: a designer or PM can look at the wireframe and understand the actual experience — not just the layout structure.
 
-### Level of detail
-Include:
-- All primary UI zones (nav, content sections, CTA)
-- Key interactive elements with short labels (max 3 words)
-- Icons where they imply element purpose (Lucide only, no emoji)
-- Progress indicator for multi-step flows
-- Trust/security element where context calls for it
+### What mid-fi communicates
+- Real typography scale — heading sizes, body sizes, label sizes create visible hierarchy
+- Real component shapes — buttons look like buttons, inputs look like inputs, cards have proper corner radii and depth cues
+- Real spacing — padding and margins reflect actual design intent
+- Real icons — Lucide SVG paths at appropriate sizes, positioned correctly
+- Real interaction states implied — primary vs secondary vs text-link hierarchy is visible
+- Still greyscale — no colour. Dark fills (#111111 to #333333) for primary elements, mid-grey (#777777 to #AAAAAA) for secondary, light grey (#DDDDDD to #F5F5F5) for backgrounds and containers
 
-Do NOT include:
-- Actual copy or content text
-- More than 3 words on any label
-- Annotation text, arrows with explanations, commentary
-- Emoji anywhere in the SVG
-- Mock content or placeholder copy
-
-### Shape palette
-| Element                   | Fill    | Stroke         | Notes              |
-|---------------------------|---------|----------------|--------------------|
-| Screen background         | #F7F7F7 | none           | artboard fill      |
-| Navigation bar — mobile   | #EBEBEB | none           | full width, 56px   |
-| Navigation bar — desktop  | #EBEBEB | none           | full width, 64px   |
-| Sidebar (desktop only)    | #EEEEEE | none           | 240px wide         |
-| Section container / card  | #E8E8E8 | none           | rx 8               |
-| Input field               | #DEDEDE | #C8C8C8 1px    | rx 6, 48px tall    |
-| Primary CTA — mobile      | #CACACA | none           | rx 10, 52px, full width |
-| Primary CTA — desktop     | #CACACA | none           | rx 10, 52px, 200-280px wide |
-| Secondary button          | #F0F0F0 | #D0D0D0 1px    | rx 8               |
-| Image / media placeholder | #D8D8D8 | none           | rx 8               |
-| Dashed upload zone        | #E8E8E8 | #D0D0D0 dashed | rx 10              |
-| Progress bar track        | #E0E0E0 | none           | 3px tall           |
-| Progress bar fill         | #AAAAAA | none           | 3px tall           |
-| Trust / info row          | #EEEEEE | none           | rx 6, 36px tall    |
-| Divider                   | none    | #E8E8E8 0.5px  | horizontal line    |
-| Step dot — active         | #AAAAAA | none           | r=5                |
-| Step dot — inactive       | #E0E0E0 | none           | r=5                |
-| Flow arrow (workflow)     | none    | #CCCCCC 1.5px  | horizontal + head  |
-
-### Icon usage
-Lucide Icons SVG paths only (https://lucide.dev). Never emoji.
-stroke-width 2, linecap round, fill none. Wrap in g transform="translate(x,y) scale(s)"
-
-Common icon paths:
-camera:        M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z
-user:          M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z
-shield:        M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z
-lock:          M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2zM7 11V7a5 5 0 0 1 10 0v4
-arrow-right:   M5 12h14M12 5l7 7-7 7
-chevron-right: M9 18l6-6-6-6
-check-circle:  M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3
-search:        M11 17.25a6.25 6.25 0 1 1 0-12.5 6.25 6.25 0 0 1 0 12.5zM16 16l4.5 4.5
-id-card:       M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z
-landmark:      M3 22V12M21 22V12M12 22V12M2 12l10-9 10 9M5 12v-2M19 12v-2
-bell:          M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0
-home:          M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10
-
-### Navigation bar
-Mobile full: height 56px, fill #EBEBEB, screen name font-size 13, font-weight 500, fill #444444
-Desktop full: height 64px, fill #EBEBEB, screen name font-size 14, font-weight 500, fill #444444
-Mini (workflow): height 32px, fill #EBEBEB, screen name font-size 8, font-weight 500
-
-### Text roles
-Screen title: font-size 15-18 (mobile full) / 18-22 (desktop full) / 9 (mini), font-weight 600, fill #1A1A1A
-Element label: font-size 11-12 (full) / 7 (mini), fill #888888, max 3 words
-Supporting text: font-size 11 (full) / 7 (mini), fill #AAAAAA
+### What mid-fi does NOT include
+- No colour fills (no blues, greens, reds — greyscale only)
+- No final copy or real content text — use representative labels
+- No detailed illustrations or decorative elements
+- No multiple interaction states per element — show default state only
+- No brand-specific styling decisions
 
 ---
 
-## OUTPUT FORMAT
+### Typography scale (mid-fi)
+
+Use real font sizes to create visible hierarchy. Every text element must use the correct size for its role.
+
+| Role | font-size | font-weight | fill |
+|---|---|---|---|
+| Screen / page title | 20-24px | 700 | #111111 |
+| Section heading | 17-18px | 600 | #1A1A1A |
+| Body / description | 13-14px | 400 | #555555 |
+| Label (above input) | 12px | 500 | #333333 |
+| Input placeholder | 13px | 400 | #AAAAAA |
+| Caption / helper text | 11px | 400 | #888888 |
+| Button label (primary) | 15px | 600 | #FFFFFF or #111111 |
+| Button label (secondary) | 14px | 500 | #333333 |
+| Text link | 13px | 400 | #333333 (underline) |
+| Nav title | 15-16px | 600 | #111111 |
+| Badge / tag | 11px | 500 | #555555 |
+
+---
+
+### Component shapes (mid-fi)
+
+Render each component to look like the real thing — not a labelled grey block.
+
+NAV BAR
+- Mobile: full width, 56px tall, fill #FAFAFA, bottom border 1px #EEEEEE
+- Desktop: full width, 64px tall, fill #FAFAFA, bottom border 1px #EEEEEE
+- Back arrow: actual SVG chevron-left path, stroke #222222, 20x20px
+- Nav title: centered, 15px, font-weight 600, fill #111111
+- Right action (if any): text button or icon, right-aligned
+
+INPUT FIELD
+- Height: 48px (mobile), 44px (desktop)
+- Fill: #FFFFFF, stroke: #DDDDDD 1px, rx: 8
+- Label above: 12px, font-weight 500, fill #333333, 8px gap below label
+- Placeholder text: 13px, fill #AAAAAA, 16px left padding
+- Focus state (if showing): stroke #555555 1.5px
+- Error state (if showing): stroke #CC0000 1px, helper text below in #CC0000
+
+PRIMARY BUTTON
+- Height: 52px (mobile full-width), 44px (desktop or inline)
+- Fill: #111111, rx: 10
+- Label: 15px, font-weight 600, fill #FFFFFF, centered
+- Optional right arrow icon: arrow-right path, stroke #FFFFFF
+
+SECONDARY BUTTON
+- Height: 48px
+- Fill: #FFFFFF, stroke: #CCCCCC 1px, rx: 10
+- Label: 14px, font-weight 500, fill #333333
+
+TEXT LINK / TERTIARY ACTION
+- No background, no border
+- 13px, fill #333333, text-decoration underline
+- Centered or left-aligned depending on context
+
+CARD / CONTAINER
+- Fill: #FFFFFF, stroke: #EEEEEE 1px, rx: 12
+- Inner padding: 16-20px
+- Optional subtle shadow implied by stroke contrast against #F5F5F5 background
+
+SECTION CONTAINER (on-screen grouping)
+- Fill: #F5F5F5 or #F9F9F9, rx: 12
+- No stroke — differentiated by fill alone
+
+UPLOAD / MEDIA ZONE
+- Fill: #F9F9F9, stroke: #DDDDDD 1.5px dashed, rx: 12
+- Large icon centered (camera, upload — Lucide path, stroke #CCCCCC, 40-48px)
+- Primary label below icon: 13px, fill #888888
+- Sub-label: 11px, fill #BBBBBB
+
+PROGRESS BAR
+- Track: height 4px, fill #F0F0F0, rx 2
+- Fill: height 4px, fill #333333, rx 2 (width = % complete)
+- Step count label: 11px, fill #AAAAAA, above left
+- Percentage label: 11px, fill #AAAAAA, above right
+
+STEP INDICATOR (dots)
+- Active dot: r=6, fill #111111 with inner white dot r=2.5
+- Inactive dot: r=5, fill none, stroke #DDDDDD 1.5px
+- Connector line between dots: stroke #EEEEEE 1px
+
+LIST ROW / TRACKER ITEM
+- Container: fill #F5F5F5, rx 10, padding 16px
+- Left icon or number circle: 32-36px circle, fill #E8E8E8 (inactive) or #333333 (active)
+- Title: 13px, font-weight 600, fill #1A1A1A (active) or #AAAAAA (inactive)
+- Sub-label: 12px, fill #AAAAAA
+- Meta label (time, status): 11px, fill #BBBBBB
+- Right chevron: chevron-right path, stroke #CCCCCC
+
+TRUST / INFO ROW
+- Fill: #F5F5F5, rx 8, 40px tall
+- Left icon: 16px, Lucide path, stroke #888888
+- Text: 12px, fill #555555
+
+BADGE / PILL
+- Fill: #EEEEEE, rx 12, height 24px, padding 0 12px
+- Label: 11px, font-weight 500, fill #555555
+
+DIVIDER
+- Horizontal line, stroke #F0F0F0, stroke-width 1
+
+BOTTOM SHEET / COLLAPSED ROW
+- Fill: #F5F5F5, rx 8, height 40px
+- Label: 12px, fill #888888, left-aligned with 16px padding
+- Expand icon (+): fill #AAAAAA, right-aligned
+
+---
+
+### Icon usage (mid-fi)
+
+Use Lucide Icons SVG paths (https://lucide.dev). All icons:
+- stroke-width: 1.8 (slightly lighter than lo-fi for refined feel)
+- stroke-linecap: round, stroke-linejoin: round, fill: none
+- Wrap in g transform="translate(x,y) scale(s)"
+
+Size guidance:
+- Nav icons: 20x20px (scale 0.83)
+- Inline UI icons: 16x16px (scale 0.67)
+- Card/list icons: 20-24px (scale 0.83-1.0)
+- Hero/upload zone icons: 40-48px (scale 1.67-2.0)
+- stroke colour: #888888 standard, #CCCCCC placeholder/inactive, #222222 active/emphasis
+
+Common icon paths:
+camera:        M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z
+chevron-left:  M15 18l-6-6 6-6
+chevron-right: M9 18l6-6-6-6
+arrow-right:   M5 12h14M12 5l7 7-7 7
+shield:        M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z
+lock:          M19 11H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2zM7 11V7a5 5 0 0 1 10 0v4
+check-circle:  M22 11.08V12a10 10 0 1 1-5.93-9.14M22 4 12 14.01l-3-3
+user:          M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z
+id-card:       M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z
+search:        M11 17.25a6.25 6.25 0 1 1 0-12.5 6.25 6.25 0 0 1 0 12.5zM16 16l4.5 4.5
+bell:          M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0
+home:          M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10
+landmark:      M3 22V12M21 22V12M12 22V12M2 12l10-9 10 9M5 12v-2M19 12v-2
+
+---
+
+### Screen background
+- Mobile screen bg: #FFFFFF (white, not grey)
+- Desktop content area bg: #FFFFFF
+- Page/app bg behind screens: #F5F5F5
+
+### Artboard
+- fill #FFFFFF, stroke #E2E2E2, stroke-width 1, rx 12 (full), rx 6 (mini)
+
+### Layout zones (mid-fi, top to bottom)
+1. Nav bar — 56px mobile, 64px desktop
+2. Progress/step indicator if multi-step — 48px
+3. Content zone — components with real spacing (16-24px gaps between elements)
+4. Secondary content / supporting info
+5. CTA zone — bottom 120px: primary button + optional text link below
+
+### Spacing in mid-fi
+- Screen edge padding: 20px (mobile), 40px (desktop)
+- Gap between form elements: 20px
+- Gap between sections: 32px
+- Card internal padding: 16-20px
+- Button height: 52px (mobile primary), 44px (desktop or secondary)
+
+---
+
+## OUTPUT FORMAT## OUTPUT FORMAT
 
 CONCEPTS OVERVIEW
 -----------------
