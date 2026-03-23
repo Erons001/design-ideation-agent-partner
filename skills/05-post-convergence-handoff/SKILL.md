@@ -17,7 +17,7 @@ If the user combines elements from multiple concepts, ask one clarifying questio
 
 ### Part 1 — Design Principles
 
-3-5 named principles derived from the chosen concept and the structured brief. Each principle has a name and a single-line explanation specific to this product and this user — not generic platitudes.
+3-5 named principles (see quality rules below) derived from the chosen concept and the structured brief. Each principle has a name and a single-line explanation specific to this product and this user — not generic platitudes.
 
 Format:
 DESIGN PRINCIPLES — [Concept name]
@@ -134,3 +134,26 @@ MOTION AND TRANSITIONS
 
 ## Handoff
 This is the final output of the agent workflow. After this, the designer proceeds to hi-fi in Figma.
+## Design principle quality rules
+
+### Principles must be specific to this product and this user
+Bad: "Progressive disclosure — reveal information gradually."
+Good: "Disclose before you ask — show the legal reason for each data request before the input field appears. This user associates unsolicited data requests with fraud risk."
+
+Bad: "Trust signals — build user confidence."
+Good: "Anchor every step with evidence — place a regulation badge and encryption note at the top of each verification screen. This user has low baseline trust in fintech apps."
+
+### Each principle must be actionable
+A designer reading the principle should know what to do and what not to do.
+Format: "[Principle name] — [what this means in practice]: [do this], not [do that]."
+
+### Principles must connect to the chosen concept's rationale
+Every principle should be traceable to either:
+- The design hypothesis of the chosen concept
+- The job or mental model the concept addresses
+- A specific friction the concept was designed to resolve
+
+### Aim for 3-5 principles
+Fewer than 3 is too thin — the designer doesn't have enough guidance.
+More than 5 is noise — the designer can't hold them all in mind while designing.
+
