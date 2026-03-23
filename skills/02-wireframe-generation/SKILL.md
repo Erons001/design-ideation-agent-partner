@@ -77,55 +77,141 @@ Every major layout decision must be traceable to the reasoning above.
 
 ## SVG WIREFRAME STANDARD
 
-### Platform — never assume
-Use the platform confirmed in the structured brief. Never default to mobile.
-- Mobile: 390 x 844px artboards
-- Desktop: 1440 x 900px artboards
-- Responsive: generate BOTH mobile and desktop artboards per concept — 8 total, grouped in pairs
-
 ### Output
 A SINGLE SVG file with ALL 4 concepts on one canvas.
 Output via create_file tool named: wireframes-[flow]-[date].svg
 
-### SINGLE SCREEN canvas — mobile
-- 4 artboards in a horizontal row, 80px gap between
-- Canvas width: (390 x 4) + (80 x 3) + 120px = 1920px
-- Canvas height: 844 + 120px = 964px
+---
 
-### SINGLE SCREEN canvas — desktop
-- 4 artboards in a horizontal row, 80px gap between
-- Canvas width: (1440 x 4) + (80 x 3) + 120px = 6120px
-- Canvas height: 900 + 120px = 1020px
+### Universal canvas layout — always vertical stack
 
-### SINGLE SCREEN canvas — responsive (mobile + desktop)
-- 8 artboards — mobile/desktop pairs, 40px gap within pair, 80px between concept groups
-- Mobile first, desktop second in each pair
-- Canvas width: ((390 + 40 + 1440) x 4) + (80 x 3) + 120px = 7800px
-- Canvas height: 900 + 120px = 1020px (desktop height is taller, use that)
+Regardless of whether the scope is SINGLE SCREEN or WORKFLOW, the canvas always uses this structure:
 
-### WORKFLOW canvas — mobile
-- 4 concept rows stacked vertically, 60px gap between rows
-- Each row: 2-3 mini-screens (220x476px) side by side with flow arrows (32px, stroke #CCCCCC 1.5px)
-- Concept labels sit to the LEFT in a 200px column
-- Canvas width: 200 + (220 x 3) + (32 x 2) + 80px = ~1024px
-- Canvas height: (476 x 4) + (60 x 3) + 180px = ~2264px
+- 4 concept rows stacked vertically, one per concept
+- Each row contains: [Notes panel] + [Screen(s) horizontally]
+- Rows separated by 48px vertical gap
+- Canvas has 40px padding on all sides
 
-### WORKFLOW canvas — desktop
-- 4 concept rows stacked vertically, 60px gap between rows
-- Each row: 2-3 mini-screens (480x270px) side by side with flow arrows
-- Concept labels to the LEFT in a 200px column
-- Canvas width: 200 + (480 x 3) + (40 x 2) + 80px = ~1800px
-- Canvas height: (270 x 4) + (60 x 3) + 180px = ~1440px
-
-### Artboard
-- fill #F7F7F7, stroke #E2E2E2, stroke-width 1, rx 12 (full) or rx 6 (mini workflow)
-
-### Concept label
-- Name: font-size 13, font-weight 600, fill #111111
-- Angle + framework: font-size 11, fill #999999
-- Competitive position tag: font-size 10, fill #BBBBBB (FOLLOW / CHALLENGE / BORROW)
+This makes the board easy to read top to bottom — one concept per row, screens reading left to right within each row.
 
 ---
+
+### Row anatomy
+
+Each concept row has two zones side by side:
+
+ZONE 1 — Notes panel (left side)
+- Width: 220px
+- Height: matches the screen height for that row
+- Background: #F0F0F0, rx 8
+- Contains all UX framework annotations for this concept (see Notes panel spec below)
+- 16px internal padding
+
+ZONE 2 — Screen(s) (right side)
+- SINGLE SCREEN: one artboard
+- WORKFLOW: 2-3 mini-screens connected by flow arrows, arranged left to right
+- 24px gap between notes panel and first screen
+- 32px gap between screens within a workflow row
+
+Total row width = 220px (notes) + 24px (gap) + screen zone width
+Total row height = screen height + 16px top margin (for concept number label above)
+
+---
+
+### Artboard sizes
+
+Mobile full size:    390 x 844px
+Desktop full size:   1440 x 900px
+Mobile mini (workflow):  220 x 476px  (56% scale)
+Desktop mini (workflow): 540 x 338px  (37% scale)
+
+For SINGLE SCREEN rows: use full size artboard
+For WORKFLOW rows: use mini size artboards (2-3 per row)
+
+---
+
+### Canvas dimensions
+
+SINGLE SCREEN mobile:
+- Row width: 220 + 24 + 390 = 634px
+- Row height: 844px
+- Canvas width: 634 + 80px padding = 714px
+- Canvas height: (844 x 4) + (48 x 3) + 80px padding = 3,700px
+
+SINGLE SCREEN desktop:
+- Row width: 220 + 24 + 1440 = 1684px
+- Canvas width: 1684 + 80px padding = 1764px
+- Canvas height: (900 x 4) + (48 x 3) + 80px = 3,824px
+
+WORKFLOW mobile (2 mini-screens per concept):
+- Row width: 220 + 24 + 220 + 32 + 220 = 716px
+- Row height: 476px
+- Canvas width: 716 + 80px = 796px
+- Canvas height: (476 x 4) + (48 x 3) + 80px = 2,128px
+
+WORKFLOW mobile (3 mini-screens per concept):
+- Row width: 220 + 24 + 220 + 32 + 220 + 32 + 220 = 968px
+- Canvas width: 968 + 80px = 1048px
+
+---
+
+### Concept number label
+Above each row, show:
+- "Concept [N]" — font-size 11, font-weight 600, fill #999999, positioned at x=40, y=(row_y - 6)
+- This floats just above the notes panel + screens
+
+---
+
+### Notes panel spec
+
+The notes panel is a key part of the SVG — it makes the wireframe board self-explanatory without needing a separate document.
+
+Content (top to bottom, 16px internal padding, 6px line spacing):
+
+1. Concept name
+   font-size 12, font-weight 600, fill #1A1A1A
+   e.g. "One Step at a Time"
+
+2. Divergence angle pill
+   Small rect: fill #E0E0E0, rx 10, height 20px, width fits text + 16px padding
+   font-size 10, fill #555555
+   e.g. "Progressive"
+
+3. UX Framework
+   font-size 10, fill #888888, label "Framework:"
+   font-size 10, font-weight 500, fill #444444, value e.g. "JTBD"
+
+4. Job / Model (one line, wraps to max 200px width)
+   font-size 10, fill #888888, label "Job / Model:"
+   font-size 10, fill #444444, value — the specific job or mental model (max 2 lines, truncate with … if needed)
+
+5. Divider line
+   stroke #DDDDDD, 0.5px, full width of panel
+
+6. Competitive position
+   font-size 10, fill #888888, label "Pattern:"
+   font-size 10, fill #444444, value — FOLLOW / CHALLENGE / BORROW + one-word descriptor
+   e.g. "FOLLOW — step wizard"
+   e.g. "CHALLENGE — removes account gate"
+   e.g. "BORROW — delivery tracker model"
+
+7. Design hypothesis (abbreviated — first 120 chars + …)
+   font-size 9, fill #AAAAAA, italic style
+   Prefix with "If…" — truncate cleanly at a word boundary
+
+---
+
+### Flow arrows (workflow rows only)
+Between mini-screens within a row:
+- Horizontal line: stroke #CCCCCC, stroke-width 1.5
+- Arrowhead at right end: simple filled triangle, 6x8px, fill #CCCCCC
+- Vertically centered at 50% of screen height
+
+---
+
+### Artboard spec
+- fill #F7F7F7, stroke #E2E2E2, stroke-width 1
+- rx 12 for full size, rx 6 for mini
 
 ## WIREFRAME VISUAL RULES — STRICT
 
