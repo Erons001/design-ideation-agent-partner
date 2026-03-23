@@ -17,6 +17,23 @@ Always extract these four before proceeding:
 3. Success — What does a good outcome look like for the user?
 4. Constraints — Platform, design system, business rules, technical limitations?
 
+
+## Scope classification — decision rules
+
+If any of these are true, classify as WORKFLOW:
+- The task involves a sequence of steps the user must complete in order
+- The task involves collecting information across more than one screen
+- The task has a defined start and end state (e.g. unauthenticated → authenticated)
+- The task involves a multi-step form, wizard, or funnel
+- The brief mentions "flow", "journey", "steps", "onboarding", "checkout", "sign up", "verification", "booking", "payment"
+
+If all of these are true, classify as SINGLE SCREEN:
+- The task is about one specific screen or interface state
+- There is no sequential progression implied
+- The brief mentions "page", "screen", "dashboard", "empty state", "settings", "profile", "search results"
+
+When in doubt: classify as WORKFLOW.
+
 ## Design scope classification — CRITICAL
 Before outputting the brief, classify the design scope as either SINGLE SCREEN or WORKFLOW.
 
