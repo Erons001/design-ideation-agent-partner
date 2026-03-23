@@ -168,6 +168,10 @@ The notes panel is a key part of the SVG — it makes the wireframe board self-e
 
 Content (top to bottom, 16px internal padding, 6px line spacing):
 
+IMPORTANT: Never truncate any text in the notes panel. All text must be shown in full.
+SVG does not auto-wrap text — use tspan elements with dy attributes to wrap long values across multiple lines.
+The notes panel height will flex to fit its content — calculate actual height needed before drawing.
+
 1. Concept name
    font-size 12, font-weight 600, fill #1A1A1A
    e.g. "One Step at a Time"
@@ -194,10 +198,13 @@ Content (top to bottom, 16px internal padding, 6px line spacing):
    e.g. "FOLLOW — step wizard"
    e.g. "CHALLENGE — removes account gate"
    e.g. "BORROW — delivery tracker model"
+   All text in the pattern row uses fill #444444 — no colour coding, no coloured labels
 
-7. Design hypothesis (abbreviated — first 120 chars + …)
+7. Design hypothesis — show in full, never truncate
    font-size 9, fill #AAAAAA, italic style
-   Prefix with "If…" — truncate cleanly at a word boundary
+   Wrap text across multiple lines using tspan elements — SVG does not auto-wrap
+   Each line maximum 26 characters — break at word boundaries using tspan dy="12"
+   Show the complete hypothesis — do not use ellipsis or cut off mid-sentence
 
 ---
 
