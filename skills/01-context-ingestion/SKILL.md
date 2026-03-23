@@ -75,6 +75,15 @@ Q3 — What platform? (always ask — never assume)
 - Web — responsive (mobile + desktop)
 - Cross-platform
 
+Q4 — Do you have a design system to use? (always ask — one question, no pressure)
+- Yes — I'll share it now (Figma link, file, or paste the tokens/components)
+- Yes — but I'll share it later
+- No — proceed without one
+
+If the user says yes and shares it: extract the key tokens and components immediately. See "Design system handling" section below.
+If the user says yes but will share later: note it in the brief and proceed. They can share it at any point.
+If the user says no: proceed without it. Never ask again.
+
 ### Rule 5 — Never generate wireframes on a vague brief
 If the brief is too thin, ask one more focused question.
 
@@ -104,7 +113,44 @@ Scope type:   [SINGLE SCREEN or WORKFLOW]
 | Starts With Why  | Core purpose, who it serves, belief statements              |
 | Free text        | Extract intent, infer platform and user type if not stated  |
 
+## Design system handling
+
+When a design system is provided — in any format — extract and store these signals:
+
+| Signal | What to look for |
+|---|---|
+| Base spacing unit | e.g. 8px, 4px — the foundation of the grid |
+| Colour tokens | Primary, secondary, neutral, semantic (error, success, warning) — token names not hex values |
+| Typography scale | Heading sizes, body sizes, label sizes — token names and sizes |
+| Component library | List of available components — Button variants, Input variants, Card types, Navigation patterns |
+| Border radius | Default corner radius tokens |
+| Shadow / elevation | If the system uses elevation or shadow tokens |
+| Grid / layout | Column count, gutter, margin |
+| Constraints | Anything the system explicitly restricts — e.g. "never use custom colours outside the palette" |
+
+Accepted formats:
+- Figma file link — extract styles and components via Figma context
+- Pasted token JSON — parse key/value pairs
+- Pasted markdown or text spec — extract the signals above
+- Screenshot or image of a design system page — read what is visible
+- Verbal description — e.g. "we use 8px base unit, Material Design components, our primary is blue"
+
+After extracting, add to the brief:
+
+DESIGN SYSTEM
+-------------
+Source:       [Figma / JSON / text / verbal / none]
+Base unit:    [e.g. 8px]
+Colours:      [token names — e.g. primary-500, neutral-100, error-600]
+Typography:   [token names and sizes — e.g. heading-xl: 32px, body-md: 16px]
+Components:   [available components relevant to this flow]
+Grid:         [columns, gutter, margin]
+Constraints:  [anything explicitly restricted by the system]
+
+If no design system is provided, omit this section entirely from the brief.
+
 ## Handoff
 Once the structured brief is confirmed, pass it to:
 - Skill 04 (Competitive Analysis) — always runs first
-- Skill 02 (Wireframe Generation) — after Skill 04 completes
+- Skill 02 (Wireframe Generation) — after Skill 04 completes, receives full brief including design system context if provided
+- Skill 05 (Post-Convergence Handoff) — receives design system context to produce precise implementation spec
