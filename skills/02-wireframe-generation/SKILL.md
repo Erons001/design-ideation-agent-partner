@@ -222,6 +222,14 @@ Then Skill 03 rationale immediately after.
 
 ---
 
+### Desktop wireframe rules (additional)
+- Nav bar: full width, 64px tall, fill #EBEBEB
+- Sidebar (if layout calls for it): 240px wide, full height, fill #EEEEEE
+- Content area: remaining width after sidebar, max 1200px centered
+- Desktop CTAs: not necessarily full-width — 200-280px wide, left-aligned or inline
+- Desktop inputs: typically 40-50% width, not full-width like mobile
+- More whitespace — desktop layouts breathe more than mobile
+
 ## RULES
 - Exactly 4 concepts — never more, never fewer
 - Platform always taken from brief — never assumed, never defaulted to mobile
