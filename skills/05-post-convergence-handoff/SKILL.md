@@ -1,81 +1,136 @@
-# Skill 05 - Post-Convergence Handoff
+# Skill 05 — Post-Convergence Handoff
 
 ## Purpose
-When the designer selects a final concept direction, generate a handoff package that bridges the low-fi concept to hi-fi execution. Serves two audiences simultaneously: the designer moving into hi-fi, and the broader team (PM, developer, stakeholders) who need to understand what was decided and why.
+When the designer selects a final concept direction, generate a handoff package that bridges the low-fi concept to hi-fi execution. Serves two audiences: the designer moving into hi-fi, and the broader team (PM, developer, stakeholders) who need to understand what was decided and why.
 
 ## Trigger
 Activates when the user signals convergence:
 - "I want to go with concept [N]"
 - "Let's develop [concept name]"
-- "This one - [description]"
+- "This one — [description]"
 
 If the user combines elements from multiple concepts, ask one clarifying question to establish the primary direction before proceeding.
 
+---
+
 ## Output
 
-### Part 1 - Design principles
-Named principles derived from the chosen concept and the structured brief.
+### Part 1 — Design Principles
+
+3-5 named principles derived from the chosen concept and the structured brief. Each principle has a name and a single-line explanation specific to this product and this user — not generic platitudes.
 
 Format:
-DESIGN PRINCIPLES - [Concept name]
-1. [Principle name]: [One-line explanation of what this means in practice]
-2. [Principle name]: [One-line explanation]
-3. [Principle name]: [One-line explanation]
-4. [Principle name]: [One-line explanation]
+DESIGN PRINCIPLES — [Concept name]
+1. [Principle name]: [What this means in practice for THIS product and THIS user]
+2. [Principle name]: [Explanation]
+3. [Principle name]: [Explanation]
 
-Aim for 3-5 principles. They must be specific to this concept - not generic design platitudes.
-"Progressive disclosure" is not a principle unless you explain what it means for THIS product and THIS user.
+"Progressive disclosure" is not a principle unless you explain what it means for this specific product and user. "Trust before commitment" IS a principle if you explain: "Show the regulatory reason for each data request before asking for it — users in this context associate data sharing with risk."
 
-### Part 2 - Design spec
+---
 
-#### Typography scale and hierarchy
-- Primary heading: size, weight, usage context
-- Secondary heading: size, weight, usage context
-- Body text: size, weight, line height
-- Labels and captions: size, weight
-- Interactive text (buttons, links): size, weight, treatment
+### Part 2 — Design Spec
 
-#### Spacing and layout grid
-- Base unit (e.g. 8px)
-- Column grid: number of columns, gutter, margin
-- Key spacing values: component padding, section spacing, element gaps
-- Any layout constraints from the brief (e.g. mobile single-column)
+The spec has two modes depending on whether a design system was provided in Skill 01.
 
-#### Interaction states
-For every interactive element identified in the wireframe:
-- Default
-- Hover
-- Focus (keyboard)
-- Active / pressed
-- Error
-- Empty / zero state
-- Disabled (if applicable)
+---
 
-#### Component suggestions
-Based on the wireframe layout:
-- Component name
-- Variant notes (e.g. "button - primary, secondary, destructive")
-- Complexity flags (e.g. "this input likely needs inline validation")
+IF A DESIGN SYSTEM WAS PROVIDED — produce a precise implementation spec that maps directly to the system:
 
-#### Accessibility considerations
-- Minimum contrast ratios to maintain
-- Focus order recommendation
-- ARIA labels needed for non-obvious interactive elements
-- Motion considerations (reduced motion alternatives)
-- Touch target minimums if mobile
+TYPOGRAPHY
+Map directly to design system tokens — do not invent sizes or weights.
+- Screen titles: use [token name] — [size, weight]
+- Section headings: use [token name] — [size, weight]
+- Body copy: use [token name] — [size, line-height]
+- Labels and captions: use [token name] — [size]
+- Button labels: use [token name] — [size, weight]
+- Flag any text role the design system does not have a token for — needs custom design
 
-#### Motion and transition guidance
-- Page/screen transitions: type and duration
-- Component-level transitions: which elements animate, how, and why
-- Loading states: skeleton screens vs spinners vs progressive load
-- Motion principle: what should motion communicate in this product?
+SPACING AND LAYOUT GRID
+Map directly to design system spacing tokens and grid.
+- Base unit: [from design system — e.g. 8px]
+- Grid: [columns, gutter, margin — from design system]
+- Component internal padding: [token — e.g. space-4 = 32px]
+- Section spacing: [token — e.g. space-6 = 48px]
+- Element gaps: [token]
+
+INTERACTION STATES
+For each interactive element in the wireframe:
+Default / Hover / Focus (keyboard) / Active / Error / Empty state / Disabled
+Reference design system component variants where they exist — e.g. "Button/Primary/Disabled"
+Flag any state the design system does not provide — needs custom design
+
+COMPONENT SUGGESTIONS
+Reference actual components from the design system library by name.
+- [Component name from library]: [which variant, any configuration notes]
+- [Component name]: [variant, notes]
+Flag — [any UI element in the wireframe that has no existing component — needs to be built]
+
+ACCESSIBILITY
+- Colour contrast: verify [specific token pairs from the design system] meet WCAG AA
+- Focus order: [recommended tab sequence for this screen or flow]
+- ARIA labels: [specific elements that need labels — non-obvious interactive elements]
+- Touch targets: [flag any component that may be below 44px on mobile]
+- Motion: [note if design system has reduced-motion preference — if not, recommend one]
+
+MOTION AND TRANSITIONS
+- Page/screen transitions: [type and duration — reference design system motion tokens if they exist]
+- Component animations: [which elements animate, how, duration]
+- Loading states: [skeleton vs spinner — reference design system patterns if available]
+- Motion principle: [what motion should communicate in this product]
+
+---
+
+IF NO DESIGN SYSTEM WAS PROVIDED — produce directional guidance the designer can use as a starting point:
+
+TYPOGRAPHY
+- Primary heading: [recommended size and weight]
+- Secondary heading: [recommended size and weight]
+- Body: [recommended size, weight, line-height]
+- Labels/captions: [recommended size, weight]
+- Interactive text: [recommended size, weight, treatment]
+- Recommendation: establish a type scale before moving to hi-fi
+
+SPACING AND LAYOUT GRID
+- Recommended base unit: 8px
+- Grid: [columns, gutter, margin for the target platform]
+- Component padding: [recommended values]
+- Section spacing: [recommended values]
+- Recommendation: define spacing tokens before developer handoff
+
+INTERACTION STATES
+For each interactive element: Default / Hover / Focus / Active / Error / Empty state / Disabled
+Recommendation: document all states before developer handoff — missing states cause implementation gaps
+
+COMPONENT SUGGESTIONS
+- [Component name]: [variants needed, complexity notes]
+- [Component name]: [notes]
+- Recommendation: define these as reusable components in a design system before handoff
+
+ACCESSIBILITY
+- Minimum contrast: 4.5:1 for body text, 3:1 for large text and UI components (WCAG AA)
+- Focus order: [recommended tab sequence]
+- ARIA labels: [specific elements that need labels]
+- Touch targets: minimum 44x44px on mobile
+- Motion: offer reduced-motion alternatives for all animations
+
+MOTION AND TRANSITIONS
+- Page transitions: [type and duration]
+- Component animations: [which elements, how, duration]
+- Loading states: [skeleton screens vs spinners — recommendation]
+- Motion principle: [what motion should communicate in this product]
+
+---
 
 ## Rules
-- Every design principle must connect to the structured brief or chosen concept rationale
-- Specs are directional, not prescriptive - frame as recommended direction unless brief has hard constraints
-- If a design system was provided in Skill 01, reference it in component suggestions and spacing values
-- Principles section must be readable by a PM or stakeholder
-- Spec section is for the designer and developer - use appropriate language for each
+
+- Every design principle must connect to the structured brief or the chosen concept rationale
+- With a design system: spec must reference actual tokens and component names — never invent values
+- With a design system: explicitly flag any UI element or state the system does not cover — these are gaps the designer must fill before developer handoff
+- Without a design system: specs are directional recommendations, not fixed rules
+- Principles section must be readable by a PM or stakeholder without design background
+- Spec section is for the designer and developer — language should be appropriate for each
+- Never invent token names that were not in the provided design system
 
 ## Handoff
 This is the final output of the agent workflow. After this, the designer proceeds to hi-fi in Figma.
