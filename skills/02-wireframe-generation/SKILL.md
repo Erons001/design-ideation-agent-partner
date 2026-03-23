@@ -340,6 +340,37 @@ TRUST / INFO ROW
 - Left icon: 16px, Lucide path, stroke #888888
 - Text: 12px, fill #555555
 
+
+LIST ROW / TRACKER ITEM — LAYOUT RULE (critical — prevents element overlap)
+Each tracker row has four distinct horizontal zones. Never overlap them:
+
+Zone 1 — Step number badge (leftmost)
+  Circle, r=18-20, left edge at 12-16px from card left
+  Contains ONLY the step number — no icon overlay
+  Active: fill #222222, number fill #FFFFFF
+  Inactive: fill #DDDDDD, number fill #AAAAAA
+
+Zone 2 — Icon block (separate from number badge, 8-12px gap to its right)
+  Square rect, 32-36px, rx 8
+  Fill #E4E4E4 (active) or #EEEEEE (inactive)
+  Icon centered inside: 20-24px, stroke #888888 (active) or #BBBBBB (inactive)
+  Do NOT overlay the icon on the number circle
+
+Zone 3 — Text block (to the right of icon block, 8px gap)
+  Title: 13px, font-weight 600, fill #111111 (active) or #AAAAAA (inactive)
+  Subtitle: 11-12px, fill #AAAAAA
+  Meta (time, status): 11px, fill #BBBBBB
+  Stack vertically with 14-16px line spacing
+
+Zone 4 — Action element (far right, vertically centered)
+  Active row: chevron-right icon, stroke #CCCCCC
+  Inactive row: lock icon, stroke #DDDDDD
+  Or: action button if row is interactive
+
+Total row height: 88-96px
+Inter-row connector: dashed vertical line from bottom of Zone 1 circle to top of next row's circle
+
+
 BADGE / PILL
 - Fill: #EEEEEE, rx 12, height 24px, padding 0 12px
 - Label: 11px, font-weight 500, fill #555555
