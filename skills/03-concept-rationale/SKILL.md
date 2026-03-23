@@ -131,3 +131,22 @@ Every section must connect back to the structured brief.
 
 ## Handoff
 When the user selects a concept, pass the full rationale — especially the hypothesis, the bet, the scenario, and the trade-off — to Skill 05 as context for design principles and spec.
+## Quality check before outputting rationale
+
+Before finalising each concept's rationale, verify:
+
+1. Is the hypothesis falsifiable? Can it be proven wrong by a specific test?
+   If not → rewrite it with a specific user, specific belief, and specific expected outcome
+
+2. Are all 4 bets genuinely different from each other?
+   If two concepts share the same bet → replace the weaker one with a different angle
+
+3. Does the scenario name a real person with a real context?
+   If it says "a user opens the app" → rewrite with a name, location, device, emotional state, and time constraint
+
+4. Does the trade-off name a real, non-trivial cost?
+   If it says "slightly less efficient" → rewrite with the specific user segment that will be worse off and why
+
+5. Does the validation question target the specific bet this concept makes?
+   If it is a generic usability question → rewrite it as a question only this concept can answer
+
