@@ -1,20 +1,25 @@
 # Design Ideation Agent Partner
 
-An AI-powered design ideation agent that helps designers, PMs, and teams generate divergent low-fi wireframe concepts grounded in JTBD, mental models, and design systems.
+An AI-powered design ideation agent that helps designers, PMs, and teams generate divergent high-fidelity wireframe concepts grounded in JTBD, mental models, and design systems.
 
 ## Why this exists
 
-Ideation takes too long. The quality of design output is directly tied to the depth and breadth of the ideation process — more ideas, explored more thoroughly, lead to better outcomes. This agent helps designers generate more ideas faster while staying grounded in problem context, user needs, JTBD, and design systems.
+Ideation takes too long. The quality of design output is directly tied to the depth and breadth of the ideation process. This agent helps designers generate more ideas faster while staying grounded in problem context, user needs, JTBD, and design systems.
 
 ## What it does
 
-Give it any design context — a PRD, a project brief, a problem statement, or just a description of what you're building. It will:
+Give it any design context — a PRD, project brief, problem statement, or description. It will:
 
-1. Extract a structured design brief from your input
-2. Optionally research competitor patterns
-3. Generate 4-6 divergent low-fi wireframe concepts as a downloadable SVG file
-4. Provide full rationale per concept (framework, key decisions, trade-offs, best fit)
-5. Deliver a complete design handoff package when you pick a direction
+1. Extract a structured design brief and confirm platform
+2. Ask about your design system (Figma link, .md file, or use Untitled UI as default)
+3. Run competitive analysis automatically (no toggle needed)
+4. Generate exactly 4 divergent high-fidelity wireframe concepts as a downloadable SVG
+5. Deliver full rationale per concept (hypothesis, bet, scenario, trade-off, validation question)
+6. Produce a complete design handoff package when you pick a direction
+
+## What high-fidelity means
+
+All concepts use the same design system — either yours or Untitled UI by default. Concepts use real colours, real typography, real component shapes. They look like a finished design direction, not grey blocks. The divergence is in layout structure and UX direction, not visual style.
 
 ---
 
@@ -22,76 +27,37 @@ Give it any design context — a PRD, a project brief, a problem statement, or j
 
 ### Option 1 — Claude Project (recommended, no code required)
 
-The fastest way. Works in any Claude conversation.
+1. Go to claude.ai and sign in
+2. Click Projects in the left sidebar
+3. Click New project
+4. Open docs/PROJECT-INSTRUCTIONS.md in this repo
+5. Copy the full contents
+6. In your project, click + next to Instructions and paste
+7. Save — the agent is active in every conversation in the project
 
-**You need:** A Claude account (free or Pro)
+Start a conversation:
 
-**Steps:**
+With a document: "Here's our PRD — generate ideation concepts for the checkout flow"
+With a description: "I need ideas for a mobile onboarding flow for a B2B SaaS product"
+With a problem: "Users are dropping off during KYC verification. I need wireframe concepts."
 
-1. Go to [claude.ai](https://claude.ai) and sign in
-2. Click the Projects icon in the left sidebar
-3. Click **New project** and give it a name (e.g. "Design Ideation Agent")
-4. Open [docs/PROJECT-INSTRUCTIONS.md](./docs/PROJECT-INSTRUCTIONS.md) in this repo
-5. Copy the full contents of that file
-6. In your new project, click **+** next to Instructions and paste the copied text
-7. Save — the agent is now active
-
-**To run a session:**
-
-Start a new conversation inside the project and type any of these:
-
-```
-# With a document
-"Here's our PRD — generate ideation concepts for the checkout flow"
-
-# With a description
-"I need ideas for a mobile onboarding flow for a B2B SaaS product"
-
-# With a problem
-"Users are dropping off before completing KYC verification. I need wireframe concepts to fix this"
-```
-
-The agent will guide you from there. Wireframes are delivered as a single SVG file you can download and open in Figma.
+Wireframes are delivered as a single SVG file you can download and open in Figma.
 
 ---
 
 ### Option 2 — Clone and customise
 
-For teams who want to adapt the agent to their own design system, frameworks, or workflow.
-
-**You need:** Git, a text editor, a Claude account
-
-**Steps:**
-
-```bash
-# 1. Clone the repo
 git clone https://github.com/Erons001/design-ideation-agent-partner
-
-# 2. Open in your editor
 cd design-ideation-agent-partner
 code .
-```
 
-**To customise:**
-- Edit any file in `skills/` to change agent behaviour
-- `skills/01-context-ingestion/SKILL.md` — change what questions are asked
-- `skills/02-wireframe-generation/SKILL.md` — change wireframe format, icon library, or palette
-- `skills/03-concept-rationale/SKILL.md` — change rationale structure
-- `skills/05-post-convergence-handoff/SKILL.md` — change what the design spec covers
-
-Then follow Option 1 to set up your Claude Project using your customised `docs/PROJECT-INSTRUCTIONS.md`.
+Customise any SKILL.md file to change agent behaviour, then set up your Claude Project.
 
 ---
 
-### Option 3 — Use individual skills directly
+### Option 3 — Use individual skills
 
-Each SKILL.md file is a standalone system prompt. Copy any individual skill and inject it as a system message in your own API calls, tools, or workflows — no need to use the full agent.
-
-**Example — using Skill 05 (Post-Convergence Handoff) standalone:**
-```
-System prompt: [contents of skills/05-post-convergence-handoff/SKILL.md]
-User message: Here is the chosen concept: [paste concept]
-```
+Each SKILL.md is a standalone system prompt. Copy any skill and inject as a system message in your own API calls or tools.
 
 ---
 
@@ -99,9 +65,9 @@ User message: Here is the chosen concept: [paste concept]
 
 | Type | Example |
 |---|---|
-| Document-led | Paste a PRD, project brief, initiative doc, or Starts With Why doc |
+| Document-led | Paste PRD, brief, initiative doc, Starts With Why |
 | Feature/flow-led | "I need ideas for a mobile checkout flow" |
-| Problem-led | "Users drop off during KYC — I need wireframe concepts to fix this" |
+| Problem-led | "Users drop off during KYC — I need concepts to fix this" |
 
 ---
 
@@ -109,40 +75,36 @@ User message: Here is the chosen concept: [paste concept]
 
 | # | Skill | What it does |
 |---|---|---|
-| 01 | Context Ingestion | Extracts a structured brief from any input |
-| 02 | Wireframe Generation | Generates 4-6 divergent low-fi concepts as SVG |
-| 03 | Concept Rationale | Named, traceable rationale per concept |
-| 04 | Competitive Analysis | Optional — researches competitor patterns |
-| 05 | Post-Convergence Handoff | Design principles + full spec when direction is chosen |
+| 01 | Context Ingestion | Extracts brief, classifies scope, confirms platform, asks about design system |
+| 02 | Wireframe Generation | Generates exactly 4 high-fi concepts using your design system or Untitled UI |
+| 03 | Concept Rationale | Deep rationale with hypothesis, bet, scenario, validation question, trade-off |
+| 04 | Competitive Analysis | Always runs — researches competitors, outputs FOLLOW/CHALLENGE/BORROW directives |
+| 05 | Post-Convergence Handoff | Design principles + full spec mapped to your design system tokens |
 
 ---
 
-## Wireframe output
+## Default design system — Untitled UI
 
-Wireframes are delivered as a single SVG file with all concepts on one canvas. Each concept shows:
-- One primary screen per artboard
-- Full layout structure with labelled UI zones
-- Lucide open source icons (no emoji)
-- Clean grey palette — no colour, no decoration
-- Concept name and UX framework tag above each artboard
+When no design system is provided, all wireframes use Untitled UI:
+- Primary: #7F56D9 (buttons, active states, links)
+- Font: Inter
+- Base unit: 4px
+- Card radius: 16px, Input/Button radius: 8px
 
-The SVG file can be downloaded from the Claude chat, opened in any SVG viewer, or imported directly into Figma.
+Untitled UI community file: https://www.figma.com/community/file/1020079203222914671
 
 ---
 
-## Frameworks used
+## Design system sharing
 
-**Jobs To Be Done (JTBD)**
-What job is the user hiring this feature to do? Each concept answers the same job differently.
-
-**Mental model alignment**
-What does the user already know that this should feel like? Each concept maps to a different reference model the user already carries.
+To use your own design system, share one of:
+- A Figma file link — the agent reads your tokens, styles, and components directly
+- A .md or .txt file — paste your token values and component specs
 
 ---
 
 ## Repository structure
 
-```
 design-ideation-agent-partner/
   skills/
     01-context-ingestion/SKILL.md
@@ -150,24 +112,17 @@ design-ideation-agent-partner/
     03-concept-rationale/SKILL.md
     04-competitive-analysis/SKILL.md
     05-post-convergence-handoff/SKILL.md
-  orchestrator/
-    ORCHESTRATOR.md
   docs/
     ARCHITECTURE.md
     PROJECT-INSTRUCTIONS.md
+  orchestrator/
+    ORCHESTRATOR.md
   README.md
-```
 
 ---
 
 ## Cost
 
-- **Hosting:** Free (Claude.ai handles everything)
-- **Claude account:** Free tier available, Pro recommended (~$20/month)
-- **API usage:** Zero — uses Claude's built-in interface, no API key needed for Options 1 and 2
-
----
-
-## Contributing
-
-Skills are markdown files — easy to read, easy to edit. If you improve a skill, open a PR. The goal is to make the agent more grounded, more useful, and more accurate over time.
+- Hosting: free (Vercel or Claude.ai)
+- Claude account: free tier available, Pro recommended
+- API usage: ~$0.03 per full session when using the API
