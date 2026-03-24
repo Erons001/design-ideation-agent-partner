@@ -1,159 +1,123 @@
 # Skill 05 — Post-Convergence Handoff
 
 ## Purpose
-When the designer selects a final concept direction, generate a handoff package that bridges the low-fi concept to hi-fi execution. Serves two audiences: the designer moving into hi-fi, and the broader team (PM, developer, stakeholders) who need to understand what was decided and why.
+When the designer selects a final concept, generate a complete handoff package for hi-fi execution. Serves the designer moving to hi-fi and the broader team (PM, developer, stakeholders).
 
 ## Trigger
-Activates when the user signals convergence:
 - "I want to go with concept [N]"
 - "Let's develop [concept name]"
-- "This one — [description]"
-
-If the user combines elements from multiple concepts, ask one clarifying question to establish the primary direction before proceeding.
-
----
+- "This one"
+If user combines elements, ask one clarifying question to establish primary direction first.
 
 ## Output
 
-### Part 1 — Design Principles
+### Part 1 — Design Principles (3-5)
+Named principles specific to THIS product and THIS user. Not generic platitudes.
 
-3-5 named principles (see quality rules below) derived from the chosen concept and the structured brief. Each principle has a name and a single-line explanation specific to this product and this user — not generic platitudes.
+Format: "[Principle name] — [what this means in practice]: do [X], not [Y]."
 
-Format:
-DESIGN PRINCIPLES — [Concept name]
-1. [Principle name]: [What this means in practice for THIS product and THIS user]
-2. [Principle name]: [Explanation]
-3. [Principle name]: [Explanation]
+Example:
+Bad: "Progressive disclosure — reveal information gradually."
+Good: "Disclose before you ask — show the legal reason for each data request before the input field appears. Do not ask for data without first stating why. This user associates unsolicited data requests with fraud risk."
 
-"Progressive disclosure" is not a principle unless you explain what it means for this specific product and user. "Trust before commitment" IS a principle if you explain: "Show the regulatory reason for each data request before asking for it — users in this context associate data sharing with risk."
+Rules:
+- Must connect to the brief or chosen concept rationale
+- Must be actionable — state what to do and what NOT to do
+- Must be specific to this product and user
+- 3-5 only — fewer is too thin, more is noise
 
 ---
 
 ### Part 2 — Design Spec
 
-The spec has two modes depending on whether a design system was provided in Skill 01.
+#### WITH USER-PROVIDED DESIGN SYSTEM — precise implementation spec
+
+Map directly to actual tokens. Never invent token names.
+Flag explicitly any UI element the wireframe needs that the system does not cover.
+
+TYPOGRAPHY
+- Map every text role to a token: [token name] — [size, weight, colour]
+- Flag any text role without a token
+
+SPACING AND GRID
+- Base unit, grid columns/gutter/margin, component padding, section spacing — all from tokens
+
+INTERACTION STATES (for each interactive element)
+Default / Hover / Focus / Active / Error / Empty state / Disabled
+Reference design system component variants. Flag any state the system does not provide.
+
+COMPONENT SUGGESTIONS
+- [Component name from library]: [variant, configuration]
+- Flag: [UI element with no existing component — needs custom design]
+
+ACCESSIBILITY
+- Verify specific token pairs meet WCAG AA (4.5:1 body, 3:1 large/UI)
+- Focus order, ARIA labels, touch targets, motion considerations
+
+MOTION AND TRANSITIONS
+- Reference design system motion tokens if they exist
+- Page transitions, component animations, loading states, motion principle
 
 ---
 
-IF A DESIGN SYSTEM WAS PROVIDED — produce a precise implementation spec that maps directly to the system:
+#### WITH UNTITLED UI DEFAULT — Untitled UI implementation spec
 
-TYPOGRAPHY
-Map directly to design system tokens — do not invent sizes or weights.
-- Screen titles: use [token name] — [size, weight]
-- Section headings: use [token name] — [size, weight]
-- Body copy: use [token name] — [size, line-height]
-- Labels and captions: use [token name] — [size]
-- Button labels: use [token name] — [size, weight]
-- Flag any text role the design system does not have a token for — needs custom design
+TYPOGRAPHY — Untitled UI / Inter
+- Screen titles:   24px / 700 / #101828
+- Section heads:   20px / 600 / #101828
+- Card titles:     16px / 600 / #101828
+- Body:            16px / 400 / #475467
+- Input labels:    14px / 500 / #344054
+- Captions:        14px / 400 / #667085
+- Button labels:   14px / 600 / #FFFFFF (primary) or #344054 (secondary)
+- Badges:          12px / 500
 
-SPACING AND LAYOUT GRID
-Map directly to design system spacing tokens and grid.
-- Base unit: [from design system — e.g. 8px]
-- Grid: [columns, gutter, margin — from design system]
-- Component internal padding: [token — e.g. space-4 = 32px]
-- Section spacing: [token — e.g. space-6 = 48px]
-- Element gaps: [token]
+SPACING — Untitled UI (4px base)
+Mobile: 16px screen edges, 16-20px element gaps, 32-48px section gaps
+Desktop: 40px screen edges, 1280px max content width, 24-32px element gaps
+Input height: 44px, Button height: 44px standard / 48px mobile full-width
+Card padding: 24px, Input padding: 10px 14px, Button padding: 10px 18px
 
-INTERACTION STATES
-For each interactive element in the wireframe:
-Default / Hover / Focus (keyboard) / Active / Error / Empty state / Disabled
-Reference design system component variants where they exist — e.g. "Button/Primary/Disabled"
-Flag any state the design system does not provide — needs custom design
+INTERACTION STATES — Untitled UI
+Primary button: default #7F56D9 / hover #6941C6 / disabled bg #D0D5DD text #667085
+Secondary button: default bg #FFFFFF border #D0D5DD / hover bg #F9FAFB
+Input: default border #D0D5DD / focus border #7F56D9 shadow 0 0 0 4px rgba(159,122,237,0.24) / error border #F04438
+For each interactive element in the wireframe: Default / Hover / Focus / Active / Error / Empty / Disabled
 
-COMPONENT SUGGESTIONS
-Reference actual components from the design system library by name.
-- [Component name from library]: [which variant, any configuration notes]
-- [Component name]: [variant, notes]
-Flag — [any UI element in the wireframe that has no existing component — needs to be built]
+COMPONENT SUGGESTIONS — Untitled UI
+- Button/Primary, Button/Secondary, Button/Ghost
+- Input/Default, Input/Destructive, Textarea/Default
+- Card/Default, Card/Feature (top accent)
+- Badge/Primary (#F4EBFF/#6941C6), Badge/Gray, Badge/Success, Badge/Error, Badge/Warning
+- Avatar XS–2XL
+- Progress Bar, Step Indicator
+- Top Nav, Bottom Tab Bar
+- Modal/Default, Drawer/Bottom
+Flag any UI element not in Untitled UI — needs custom design.
 
-ACCESSIBILITY
-- Colour contrast: verify [specific token pairs from the design system] meet WCAG AA
-- Focus order: [recommended tab sequence for this screen or flow]
-- ARIA labels: [specific elements that need labels — non-obvious interactive elements]
-- Touch targets: [flag any component that may be below 44px on mobile]
-- Motion: [note if design system has reduced-motion preference — if not, recommend one]
+ACCESSIBILITY — Untitled UI
+- gray-900 on white, gray-700 on gray-50: both pass WCAG AA
+- #7F56D9 on white: passes 4.5:1
+- Always show focus ring: 0 0 0 4px rgba(159,122,237,0.24)
+- Touch targets minimum 44x44px
+- Follow prefers-reduced-motion — provide non-animated fallbacks
 
-MOTION AND TRANSITIONS
-- Page/screen transitions: [type and duration — reference design system motion tokens if they exist]
-- Component animations: [which elements animate, how, duration]
-- Loading states: [skeleton vs spinner — reference design system patterns if available]
-- Motion principle: [what motion should communicate in this product]
-
----
-
-IF NO DESIGN SYSTEM WAS PROVIDED — produce directional guidance the designer can use as a starting point:
-
-TYPOGRAPHY
-- Primary heading: [recommended size and weight]
-- Secondary heading: [recommended size and weight]
-- Body: [recommended size, weight, line-height]
-- Labels/captions: [recommended size, weight]
-- Interactive text: [recommended size, weight, treatment]
-- Recommendation: establish a type scale before moving to hi-fi
-
-SPACING AND LAYOUT GRID
-- Recommended base unit: 8px
-- Grid: [columns, gutter, margin for the target platform]
-- Component padding: [recommended values]
-- Section spacing: [recommended values]
-- Recommendation: define spacing tokens before developer handoff
-
-INTERACTION STATES
-For each interactive element: Default / Hover / Focus / Active / Error / Empty state / Disabled
-Recommendation: document all states before developer handoff — missing states cause implementation gaps
-
-COMPONENT SUGGESTIONS
-- [Component name]: [variants needed, complexity notes]
-- [Component name]: [notes]
-- Recommendation: define these as reusable components in a design system before handoff
-
-ACCESSIBILITY
-- Minimum contrast: 4.5:1 for body text, 3:1 for large text and UI components (WCAG AA)
-- Focus order: [recommended tab sequence]
-- ARIA labels: [specific elements that need labels]
-- Touch targets: minimum 44x44px on mobile
-- Motion: offer reduced-motion alternatives for all animations
-
-MOTION AND TRANSITIONS
-- Page transitions: [type and duration]
-- Component animations: [which elements, how, duration]
-- Loading states: [skeleton screens vs spinners — recommendation]
-- Motion principle: [what motion should communicate in this product]
+MOTION — Untitled UI
+- Page transitions: 200ms ease-out, opacity + translateY(8px) to 0
+- Component appear: 150ms ease, opacity + scale(0.98) to 1
+- Hover states: 100ms ease
+- Loading: skeleton screens matching Untitled UI card shapes
+- Motion principle: [derive from chosen concept rationale]
 
 ---
 
 ## Rules
-
-- Every design principle must connect to the structured brief or the chosen concept rationale
-- With a design system: spec must reference actual tokens and component names — never invent values
-- With a design system: explicitly flag any UI element or state the system does not cover — these are gaps the designer must fill before developer handoff
-- Without a design system: specs are directional recommendations, not fixed rules
-- Principles section must be readable by a PM or stakeholder without design background
-- Spec section is for the designer and developer — language should be appropriate for each
-- Never invent token names that were not in the provided design system
+- Principles must connect to brief and chosen concept rationale
+- With user's system: map to actual tokens, flag all gaps
+- With Untitled UI: map to Untitled UI tokens by name
+- Principles readable by PM/stakeholder without design background
+- Spec for designer and developer — appropriate language for each
+- Never invent token names not in the provided system
 
 ## Handoff
-This is the final output of the agent workflow. After this, the designer proceeds to hi-fi in Figma.
-## Design principle quality rules
-
-### Principles must be specific to this product and this user
-Bad: "Progressive disclosure — reveal information gradually."
-Good: "Disclose before you ask — show the legal reason for each data request before the input field appears. This user associates unsolicited data requests with fraud risk."
-
-Bad: "Trust signals — build user confidence."
-Good: "Anchor every step with evidence — place a regulation badge and encryption note at the top of each verification screen. This user has low baseline trust in fintech apps."
-
-### Each principle must be actionable
-A designer reading the principle should know what to do and what not to do.
-Format: "[Principle name] — [what this means in practice]: [do this], not [do that]."
-
-### Principles must connect to the chosen concept's rationale
-Every principle should be traceable to either:
-- The design hypothesis of the chosen concept
-- The job or mental model the concept addresses
-- A specific friction the concept was designed to resolve
-
-### Aim for 3-5 principles
-Fewer than 3 is too thin — the designer doesn't have enough guidance.
-More than 5 is noise — the designer can't hold them all in mind while designing.
-
+Final output. Designer proceeds to hi-fi in Figma.
