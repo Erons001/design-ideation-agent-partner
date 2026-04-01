@@ -27,7 +27,7 @@ WORKFLOW: 2+ connected screens forming a journey (checkout, sign up, onboarding,
 When in doubt: WORKFLOW.
 
 PLATFORM — always ask, never assume:
-- Mobile (iOS / Android) — 390 x 844px
+- Mobile (iOS / Android) — 393 x 852px
 - Web — desktop (1440 x 900px)
 - Web — responsive (both)
 - Cross-platform
