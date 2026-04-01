@@ -214,16 +214,24 @@ Named: wireframes-[flow]-[date].svg
 Each row: notes panel (left, 220px) + screen(s) (right, 24px gap)
 40px padding all sides. 56px gap between rows. 20px label above each row.
 
-### Artboard sizes
-Mobile full:   390 x 844px
-Desktop full:  1440 x 900px
-Mobile mini:   220 x 476px (workflow)
-Desktop mini:  540 x 338px (workflow)
+### Artboard sizes — exact values, no exceptions
+
+MOBILE:   393 x 852px  (iPhone 14 / 15 standard viewport)
+DESKTOP:  1440 x 900px (standard desktop viewport)
+
+Mobile mini (workflow): 222 x 480px  (56% of 393x852, rounded)
+Desktop mini (workflow): 540 x 338px (37% of 1440x900, rounded)
+
+RESPONSIVE — when user selects responsive or both:
+Generate BOTH a mobile AND a desktop artboard for each concept.
+Each concept row contains: notes panel + mobile artboard + [gap] + desktop artboard
+Label each artboard: "Mobile — 393×852" and "Desktop — 1440×900"
+Canvas width must accommodate both artboards side by side.
 
 ### Canvas dimensions
 Single screen mobile:
-  Width = 40 + 220 + 24 + 390 + 40 = 714px
-  Height = 40 + 4(20+844) + 3(56) + 40 = ~3,700px
+  Width = 40 + 220 + 24 + 393 + 40 = 717px
+  Height = 40 + 4(20+852) + 3(56) + 40 = ~3,732px
 
 Workflow mobile (2 mini per row):
   Width = 40 + 220 + 24 + 220 + 32 + 220 + 40 = 796px
@@ -243,6 +251,48 @@ Content top to bottom — full text, never truncate, wrap with tspan:
 6. Pattern: 10px #98A2B3 label + 10px 500 #344054 value (neutral, no colour coding)
 7. Divider: 1px #EAECF0
 8. Hypothesis: 9px italic #98A2B3 label + 9px #BBBBBB body (wrap text, full)
+
+
+
+### Responsive — both mobile and desktop per concept
+
+When platform = responsive, each concept row contains:
+  [Notes panel 220px] + [24px gap] + [Mobile artboard 393x852] + [48px gap] + [Desktop artboard 1440x900]
+
+Label above mobile artboard: "Mobile 393×852" — 9px, #98A2B3
+Label above desktop artboard: "Desktop 1440×900" — 9px, #98A2B3
+
+Canvas width = 40 + 220 + 24 + 393 + 48 + 1440 + 40 = 2205px
+Canvas height = 40 + 4(20 + 900) + 3(56) + 40 = ~3,868px  (desktop drives row height)
+
+
+### Notes panel — text overflow prevention (critical)
+
+SVG does not auto-wrap text. Every text field in the notes panel MUST use tspan elements for wrapping.
+The panel width is fixed at 220px with 16px internal padding on each side = 188px usable text width.
+
+Rules to prevent overflow:
+- Maximum ~26 characters per line at font-size 10px
+- Maximum ~30 characters per line at font-size 9px
+- Maximum ~22 characters per line at font-size 12px
+- Every multi-word value MUST be split into lines using tspan dy="12" (or dy="11" for 9px text)
+- The panel height MUST be calculated from actual content height, not assumed to equal screen height
+- Panel height = sum of all text line heights + spacing + top/bottom padding (16px each)
+- If calculated panel height < screen height, set panel height = screen height
+- Never let a text element extend beyond x = (panel_left + panel_width - 16px)
+
+Pattern field specifically — often the longest value:
+- Split at natural break points: after the em-dash "—" or after FOLLOW/CHALLENGE/BORROW
+- Example: "FOLLOW — step wizard" fits on one line
+- Example: "CHALLENGE — removes account gate before first step" must split:
+  Line 1: "CHALLENGE — removes"
+  Line 2: "account gate before"
+  Line 3: "first step"
+
+Hypothesis field — always multi-line:
+- Split every 28-30 characters at word boundaries
+- Use dy="11" for 9px font
+- Allow as many lines as needed — panel height expands to fit
 
 ### Flow arrows (workflow)
 Stroke #D0D5DD, stroke-width 1.5, arrowhead: small filled triangle fill #D0D5DD
