@@ -216,11 +216,11 @@ Each row: notes panel (left, 220px) + screen(s) (right, 24px gap)
 
 ### Artboard sizes — exact values, no exceptions
 
-MOBILE:   393 x 852px  (iPhone 14 / 15 standard viewport)
-DESKTOP:  1440 x 900px (standard desktop viewport)
+MOBILE:   393 x 852px  (iPhone 14/15 standard viewport)
+DESKTOP:  1440 x 900px (standard desktop viewport — always full size, never thumbnail)
 
-Mobile mini (workflow): 222 x 480px  (56% of 393x852, rounded)
-Desktop mini (workflow): 540 x 338px (37% of 1440x900, rounded)
+Mobile mini (workflow):  222 x 480px  (56% of 393x852)
+Desktop mini (workflow): 810 x 506px  (56% of 1440x900)
 
 RESPONSIVE — when user selects responsive or both:
 Generate BOTH a mobile AND a desktop artboard for each concept.
@@ -230,7 +230,7 @@ Canvas width must accommodate both artboards side by side.
 
 ### Canvas dimensions
 Single screen mobile:
-  Width = 40 + 220 + 24 + 393 + 40 = 717px
+  Width = 40 + 240 + 28 + 393 + 40 = 741px
   Height = 40 + 4(20+852) + 3(56) + 40 = ~3,732px
 
 Workflow mobile (2 mini per row):
